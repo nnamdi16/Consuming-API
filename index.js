@@ -28,4 +28,13 @@ function searchByText(){
 	})
 }
 
+function gitHubRepo(text){
+	let text = document.getElementById('username').value;
+	fetch(`https://api.github.com/${text}/repos`)
+	.then(response => response.json())
+	.then(json => console.log(json))
+
+}
+
+console.log(gitHubRepo('nnamdi16'));
 // console.log(searchByText(dol)
