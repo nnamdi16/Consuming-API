@@ -13,19 +13,18 @@ function searchById(){
 
 
 function searchByText(){
-	
+	let output =[];
 	let text = document.getElementById('searchText').value;
 	fetch(`https://jsonplaceholder.typicode.com/todos/`)
 	.then(response => response.json())
 	.then(json => {
-		let output =[];
+		
 		for(let index = 0; index < json.length; index++){
-			console.log(json[index]);
-			if(json[index].indexOf(text) !== -1){
+			if(json[index].title.indexOf(text) !== -1){
 				output.push(json[index]);
 			}
 		}
-		return output;
+			 console.log(output);
 	})
 }
 
