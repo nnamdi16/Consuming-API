@@ -24,7 +24,7 @@ function searchByText(){
 				output.push(json[index]);
 			}
 		}
-			 console.log(output);
+			 console.table(output);
 	})
 }
 
