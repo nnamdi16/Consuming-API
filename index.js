@@ -1,10 +1,10 @@
 console.log('Hello World');
 function searchById(){
 	let id = document.getElementById('searchById').value;
-	console.log(id);
 	fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
 	.then(response => response.json())
-	.then(json => console.log(json))
+	.then(json => console.table(json))
+	console.log(id);
 }
 
 
@@ -28,13 +28,18 @@ function searchByText(){
 	})
 }
 
-function gitHubRepo(text){
-	let text = document.getElementById('username').value;
-	fetch(`https://api.github.com/${text}/repos`)
+function gitHubRepo(){
+	let output = []
+	let user = document.getElementById('username').value;
+	fetch(`https://api.github.com/users/${user}/repos`)
 	.then(response => response.json())
-	.then(json => console.log(json))
+	.then(json => {
+		for(let index =0; index < json.length; index++){
+			output.push(json[index].name)
+		}
+		console.table(output);
+	});
 
 }
 
-console.log(gitHubRepo('nnamdi16'));
-// console.log(searchByText(dol)
+// console.log(gitHubRepo());
