@@ -1,10 +1,10 @@
 console.log('Hello World');
 function searchById(){
 	let id = document.getElementById('searchById').value;
-	console.log(id);
 	fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
 	.then(response => response.json())
-	.then(json => console.log(json))
+	.then(json => console.table(json))
+	console.log(id);
 }
 
 
@@ -13,20 +13,33 @@ function searchById(){
 
 
 function searchByText(){
-	
+	let output =[];
 	let text = document.getElementById('searchText').value;
 	fetch(`https://jsonplaceholder.typicode.com/todos/`)
 	.then(response => response.json())
 	.then(json => {
-		let output =[];
+		
 		for(let index = 0; index < json.length; index++){
-			console.log(json[index]);
-			if(json[index].indexOf(text) !== -1){
+			if(json[index].title.indexOf(text) !== -1){
 				output.push(json[index]);
 			}
 		}
-		return output;
+			 console.table(output);
 	})
 }
 
-// console.log(searchByText(dol)
+function gitHubRepo(){
+	let output = []
+	let user = document.getElementById('username').value;
+	fetch(`https://api.github.com/users/${user}/repos`)
+	.then(response => response.json())
+	.then(json => {
+		for(let index =0; index < json.length; index++){
+			output.push(json[index].name)
+		}
+		console.table(output);
+	});
+
+}
+
+// console.log(gitHubRepo());
